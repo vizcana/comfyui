@@ -10,9 +10,13 @@ RUN git clone https://github.com/comfy-org/ComfyUI.git /app
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN git clone https://github.com/ltdrdata/ComfyUI-Manager \
-    /app/custom_nodes/comfyui-manager
+
+# Install ComfyUI Manager
+RUN git clone https://github.com/Comfy-Org/ComfyUI-Manager.git \
+    /app/custom_nodes/ComfyUI-Manager
+
+RUN pip install -r /app/custom_nodes/ComfyUI-Manager/requirements.txt
 
 EXPOSE 8188
 
-CMD ["python", "main.py", "--listen", "0.0.0.0", "--enable-manager"]
+CMD ["python", "main.py", "--listen", "0.0.0.0"]
